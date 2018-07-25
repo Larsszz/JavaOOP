@@ -1,27 +1,17 @@
 package LvL2;
 
-public class Triangle extends Shape {
+public class Rectangle extends Shape{
     private Point firstPoint = new Point();
     private Point secondPoint = new Point();
-    private Point thirdPoint = new Point();
+    private Point thirdPoint = new Point(firstPoint.getX(),secondPoint.getY());
+    private Point fourPoint = new Point(secondPoint.getX(), firstPoint.getY());
 
-    public Triangle(Point firstPoint, Point secondPoint, Point thirdPoint) {
+    public Rectangle(Point firstPoint, Point secondPoint) {
         this.firstPoint = firstPoint;
         this.secondPoint = secondPoint;
-        this.thirdPoint = thirdPoint;
     }
 
-    public Triangle(double x1, double y1, double x2, double y2, double x3, double y3) {
-        firstPoint.setX(x1);
-        firstPoint.setY(y1);
-        secondPoint.setX(x2);
-        secondPoint.setY(y2);
-        thirdPoint.setX(x3);
-        thirdPoint.setY(y3);
-    }
-
-    public Triangle() {
-
+    public Rectangle() {
     }
 
     public Point getFirstPoint() {
@@ -48,14 +38,28 @@ public class Triangle extends Shape {
         this.thirdPoint = thirdPoint;
     }
 
+    public Point getFourPoint() {
+        return fourPoint;
+    }
+
+    public void setFourPoint(Point fourPoint) {
+        this.fourPoint = fourPoint;
+    }
+
     @Override
     public String toString() {
-        return "Triangle{" +
+        return "Rectangle{" +
                 "firstPoint=" + firstPoint +
                 ", secondPoint=" + secondPoint +
                 ", thirdPoint=" + thirdPoint +
+                ", fourPoint=" + fourPoint +
                 '}';
     }
+
+    /*public void createPoints() {
+        thirdPoint = new Point(firstPoint.getX(),secondPoint.getY());
+        fourPoint = new Point(secondPoint.getX(), firstPoint.getY());
+    }*/
 
     @Override
     public double getPerimetr() {
@@ -63,9 +67,7 @@ public class Triangle extends Shape {
                 + Math.pow((secondPoint.getY() - firstPoint.getY()), 2));
         double secondSide = Math.sqrt(Math.pow((thirdPoint.getX() - secondPoint.getX()), 2)
                 + Math.pow((thirdPoint.getY() - secondPoint.getY()), 2));
-        double thrirdSide = Math.sqrt(Math.pow((thirdPoint.getX() - firstPoint.getX()), 2)
-                + Math.pow((thirdPoint.getY() - firstPoint.getY()), 2));
-        return firstSide + secondSide + thrirdSide;
+        return (firstSide+secondSide)*2;
     }
 
     @Override
@@ -74,9 +76,6 @@ public class Triangle extends Shape {
                 + Math.pow((secondPoint.getY() - firstPoint.getY()), 2));
         double secondSide = Math.sqrt(Math.pow((thirdPoint.getX() - secondPoint.getX()), 2)
                 + Math.pow((thirdPoint.getY() - secondPoint.getY()), 2));
-        double thrirdSide = Math.sqrt(Math.pow((thirdPoint.getX() - firstPoint.getX()), 2)
-                + Math.pow((thirdPoint.getY() - firstPoint.getY()), 2));
-        double halfOfPerimetr = (firstSide + secondSide + thrirdSide) / 2;
-        return Math.sqrt(halfOfPerimetr * (halfOfPerimetr - firstSide) * (halfOfPerimetr - secondSide) * (halfOfPerimetr - thrirdSide));
+        return firstSide*secondSide;
     }
 }
